@@ -15,24 +15,30 @@ npx serve .
 - `js/main.js`: all interactions
 - `assets/`: ornament border, background tile, favicon
 
+## Languages
+
+Russian and Kazakh, switched with the ҚАЗ / РУС button in the header. The choice is remembered; on first visit Kazakh is shown if the browser prefers Kazakh, otherwise Russian.
+
+- Russian text is written directly in `index.html`.
+- Kazakh text is in `js/i18n.js`, matched by the `data-i18n` key on each element.
+- To change a phrase, edit it in both places.
+
 ## Interactions
 
-- **Hero dombyra**: tap a string, or swipe across both strings, to play. The sound is synthesised in the browser (Karplus–Strong, tuned D–G). Tapping higher up the neck plays fretted notes.
-- **Programs**: filter by age with the tabs. Tap or swipe a card to flip it. "Choose" fills in the enrollment form.
-- **Teachers / testimonials**: swipeable carousels with arrows, dots and keyboard support.
-- **Gallery**: tap to open the lightbox. Swipe sideways to browse, swipe down or press Esc to close.
-- Click ripples, scroll reveals, counters, a full-screen mobile menu (swipe right to close) and form validation.
+- **Hero dombyra**: tap a string, or swipe across both strings, to play. Tapping higher up the neck plays fretted notes.
+- **Programs** (children, teens, adults): tap or swipe a card to flip it. "Записаться" preselects the age group in the form.
+- **How it works**: swipeable 4-step carousel with arrows, dots and keyboard support.
+- **Gallery**: tap to open; swipe sideways to browse, swipe down or Esc to close.
+- Floating WhatsApp button, click ripples, scroll reveals, full-screen mobile menu.
 
-## Contacts (real)
+## Contacts
 
-- WhatsApp: +7 747 903 30 89 (floating button, hero, contact section, footer, and the enrollment form)
+- WhatsApp: +7 747 903 30 89. The enrollment form opens WhatsApp with name, phone, age group and branch prefilled in the current language; nothing is stored on the site.
 - Instagram: [@perne_dombyra](https://www.instagram.com/perne_dombyra/)
+- Hours: 10:00–19:00
 - Branch 1: Алексей Петров көшесі, 25, 3 қабат, 9 кабинет, Алматы ауданы, Астана, Z00T5Y1
 - Branch 2: Сығанақ көшесі, 54а, 7 қабат, 708/2 кеңсе, Есіл ауданы, Астана, 010017 / Z05K6Y0
 
-The enrollment form has no backend. It opens WhatsApp with the student's name, phone, program, age and branch already written, and the visitor presses Send.
+## Not on the site yet
 
-## Still placeholders
-
-- Teacher names and bios, programs, prices, stats and concert dates.
-- The gallery uses illustrations. Real photos of your students and instruments will look better: replace the `<svg>` inside any `.tile` with an `<img>`.
+Prices, schedule, minimum age, teachers and real photos. The gallery uses illustrations; replace the `<svg>` inside any `.tile` with an `<img>` to use photos.

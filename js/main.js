@@ -6,6 +6,8 @@
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const I18N = window.I18N || { lang: "ru", t: (k) => k, onChange() {} };
+  const t = (k, vars) => I18N.t(k, vars);
 
   /* ---------- Swipe helper ----------
      Calls handlers for horizontal drags; vertical movement is left to the
@@ -67,10 +69,11 @@
   const setMenu = (open) => {
     nav.classList.toggle("is-open", open);
     burger.setAttribute("aria-expanded", String(open));
-    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    burger.setAttribute("aria-label", t(open ? "menu.close" : "menu.open"));
     document.body.classList.toggle("menu-open", open);
   };
   burger.addEventListener("click", () => setMenu(!nav.classList.contains("is-open")));
+  I18N.onChange(() => burger.setAttribute("aria-label", t(nav.classList.contains("is-open") ? "menu.close" : "menu.open")));
   nav.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
   addEventListener("keydown", (e) => { if (e.key === "Escape" && nav.classList.contains("is-open")) setMenu(false); });
   // Swipe right on the open menu closes it
@@ -89,7 +92,7 @@
 
   /* ---------- Click ripple ---------- */
   document.addEventListener("pointerdown", (e) => {
-    const el = e.target.closest(".btn, .tab, .round-btn");
+    const el = e.target.closest(".btn, .round-btn, .lang button");
     if (!el) return;
     const r = el.getBoundingClientRect();
     const size = Math.max(r.width, r.height) * 2;
@@ -141,7 +144,7 @@
     const STRING_X = [95.5, 104.5];
     const OPEN = [146.83, 196.0];               // D3 and G3 — the common "kara" tuning, a fourth apart
     const FRETS = [115, 148, 179, 209, 237, 263, 288, 311, 333, 354, 374, 392, 410, 427, 442, 457];
-    const NOTE_NAMES = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"];
+    const NOTE_NAMES = ["до", "до♯", "ре", "ре♯", "ми", "фа", "фа♯", "соль", "соль♯", "ля", "ля♯", "си"];
     const OPEN_SEMI = [2, 7];                    // D and G
 
     let ctx = null, bus = null;
@@ -274,28 +277,15 @@
   }
 
   /* =========================================================
-     Programs: tabs filter + flip cards (click, Enter, swipe)
+     Programs: flip cards (click, Enter, swipe)
      ========================================================= */
   const cards = $$(".card");
-  $$(".tab").forEach((tab) => tab.addEventListener("click", () => {
-    $$(".tab").forEach((t) => { t.classList.toggle("is-active", t === tab); t.setAttribute("aria-selected", String(t === tab)); });
-    const f = tab.dataset.filter;
-    cards.forEach((c) => {
-      const show = f === "all" || c.dataset.age.split(" ").includes(f);
-      c.classList.remove("is-flipped", "is-entering");
-      c.classList.toggle("is-hidden", !show);
-      if (show) { void c.offsetWidth; c.classList.add("is-entering"); }
-    });
-  }));
-
-  const programSelect = $("#programSelect");
   cards.forEach((card) => {
     card.addEventListener("click", (e) => {
-      const choose = e.target.closest("a[data-program]");
+      const choose = e.target.closest("a[data-who]");
       if (choose) {
-        const v = choose.dataset.program;
-        const opt = [...programSelect.options].find((o) => o.text === v);
-        if (opt) programSelect.value = opt.value;
+        const radio = $(`#enrollForm input[name="who"][value="${choose.dataset.who}"]`);
+        if (radio) radio.checked = true;
         return;
       }
       card.classList.toggle("is-flipped");
@@ -331,7 +321,7 @@
       dots = Array.from({ length: max + 1 }, (_, i) => {
         const b = document.createElement("button");
         b.type = "button";
-        b.setAttribute("aria-label", "Go to slide " + (i + 1));
+        b.setAttribute("aria-label", t("slide") + " " + (i + 1));
         b.addEventListener("click", () => { go(i); restart(); });
         dotsEl.appendChild(b);
         return b;
@@ -378,10 +368,8 @@
     buildDots(); go(0); restart();
   }
 
-  const tc = $("#teacherCarousel");
-  if (tc) Slider(tc, { track: $(".carousel__track", tc), dotsEl: $("#teacherDots"), prevNext: $$(".carousel__ctrls .round-btn") });
-  const qs = $("#quotes");
-  if (qs) Slider(qs, { track: $(".quote-swiper__track", qs), dotsEl: $("#quoteDots"), autoplay: 7000 });
+  const sc = $("#stepsCarousel");
+  if (sc) Slider(sc, { track: $(".carousel__track", sc), dotsEl: $("#stepsDots"), prevNext: $$(".carousel__ctrls .round-btn") });
 
   /* =========================================================
      Gallery lightbox — click to open, swipe sideways to browse,
@@ -458,8 +446,14 @@
     lb.addEventListener("pointercancel", end);
   })();
 
-  /* ---------- Enrollment form ---------- */
+  /* ---------- WhatsApp links: greeting in the current language ---------- */
   const WHATSAPP = "https://wa.me/77479033089";
+  const waUrl = (text) => WHATSAPP + "?text=" + encodeURIComponent(text);
+  const updateWaLinks = () => $$("a[data-wa]").forEach((a) => { a.href = waUrl(t("wa.greeting")); });
+  updateWaLinks();
+  I18N.onChange(updateWaLinks);
+
+  /* ---------- Enrollment form ---------- */
   const toast = $("#toast");
   const showToast = (msg) => {
     toast.textContent = msg;
@@ -478,23 +472,24 @@
       el.classList.remove("is-invalid");
       if (!valid) { void el.offsetWidth; el.classList.add("is-invalid"); ok = false; }
     });
-    if (!ok) { showToast("Please enter your name and a valid phone number."); return; }
+    if (!ok) { showToast(t("toast.invalid")); return; }
     // No backend: the request is handed to the academy's WhatsApp, prefilled.
     const f = form.elements;
+    const checked = (n) => $(`input[name="${n}"]:checked`, form);
+    const label = (input) => input.nextElementSibling.textContent.trim();
+    const branch = f.namedItem("branch");
     const text = [
-      "Сәлеметсіз бе! / Здравствуйте!",
-      "Сынақ сабаққа жазылғым келеді / Хочу записаться на пробный урок.",
+      t("wa.greeting"),
       "",
-      "Аты / Имя: " + name,
-      "Телефон: " + phoneEl.value.trim(),
-      "Бағдарлама / Программа: " + f.namedItem("program").value,
-      "Жасы / Возраст: " + f.namedItem("age").value,
-      "Филиал: " + f.namedItem("branch").value,
+      t("wa.name") + ": " + name,
+      t("wa.phone") + ": " + phoneEl.value.trim(),
+      t("wa.who") + ": " + label(checked("who")),
+      t("wa.branch") + ": " + branch.options[branch.selectedIndex].text,
     ].join("\n");
-    const url = WHATSAPP + "?text=" + encodeURIComponent(text);
+    const url = waUrl(text);
     const win = window.open(url, "_blank");
     if (win) win.opener = null; else location.href = url;
-    showToast(`Рахмет, ${name}! Press “Send” in WhatsApp to finish.`);
+    showToast(t("toast.sent", { name }));
     form.reset();
   });
   $$("input", form).forEach((el) => el.addEventListener("input", () => el.classList.remove("is-invalid")));

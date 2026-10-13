@@ -1,17 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Perne Music Academy</title>
-  <meta name="description" content="Perne — a local music academy for dombyra, kobyz, folk singing and piano. Lessons for children, teens and adults.">
+  <title data-i18n="meta.title">Perne — школа домбры в Астане</title>
+  <meta name="description" data-i18n-attr="content:meta.desc" content="Perne — школа игры на домбре для детей, подростков и взрослых. Два филиала в Астане, с 10:00 до 19:00.">
   <meta name="theme-color" content="#0f1d3d">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <script>document.documentElement.classList.add("js")</script>
+  <script>
+    // Apply the saved/browser language before first paint to avoid a flash of the other language
+    (function () {
+      var d = document.documentElement, l;
+      d.classList.add("js");
+      try { l = localStorage.getItem("perne-lang"); } catch (e) {}
+      if (!l) l = (navigator.languages || [navigator.language || ""]).some(function (x) { return /^kk/i.test(x); }) ? "kk" : "ru";
+      d.lang = l;
+      if (l !== "ru") d.classList.add("i18n-pending");
+    })();
+  </script>
 </head>
 <body>
 
@@ -73,6 +83,11 @@
       <circle cx="12" cy="9.8" r="2.6" fill="currentColor"/>
     </symbol>
 
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/>
+      <path d="M12 7v5l3.2 2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+    </symbol>
+
     <!-- Wood & lacquer gradients -->
     <radialGradient id="wood" cx="42%" cy="38%" r="70%">
       <stop offset="0" stop-color="#e2a560"/>
@@ -123,25 +138,29 @@
   </defs>
 </svg>
 
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main" data-i18n="skip">Перейти к содержанию</a>
 
 <!-- ============ Header ============ -->
 <header class="header" id="top">
   <div class="header__inner container">
-    <a class="logo" href="#top" aria-label="Perne Music Academy — home">
+    <a class="logo" href="#top" data-i18n-attr="aria-label:logo.aria" aria-label="Perne — на главную">
       <svg class="logo__mark" aria-hidden="true"><use href="#rosette"/></svg>
-      <span class="logo__text">Perne<small>Music Academy</small></span>
+      <span class="logo__text">Perne<small data-i18n="logo.sub">Школа домбры</small></span>
     </a>
-    <nav class="nav" id="nav" aria-label="Main">
-      <a href="#about">About</a>
-      <a href="#programs">Programs</a>
-      <a href="#teachers">Teachers</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#events">Concerts</a>
-      <a href="#contact">Contact</a>
-      <a class="btn btn--gold nav__cta" href="#enroll">Enroll</a>
+    <nav class="nav" id="nav" data-i18n-attr="aria-label:nav.aria" aria-label="Главное меню">
+      <a href="#about" data-i18n="nav.about">О школе</a>
+      <a href="#programs" data-i18n="nav.programs">Обучение</a>
+      <a href="#steps" data-i18n="nav.steps">Как проходит</a>
+      <a href="#gallery" data-i18n="nav.gallery">Галерея</a>
+      <a href="#contact" data-i18n="nav.contact">Контакты</a>
+      <a class="btn btn--gold nav__cta" href="#enroll" data-i18n="nav.cta">Записаться</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+    <div class="lang" role="group" data-i18n-attr="aria-label:lang.aria" aria-label="Язык сайта">
+      <span class="lang__pill" aria-hidden="true"></span>
+      <button type="button" data-lang="kk" lang="kk" aria-pressed="false">ҚАЗ</button>
+      <button type="button" data-lang="ru" lang="ru" aria-pressed="true">РУС</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -154,17 +173,17 @@
   <div class="hero__pattern" aria-hidden="true"></div>
   <div class="hero__inner container">
     <div class="hero__copy reveal">
-      <p class="eyebrow">Қош келдіңіз · Welcome</p>
-      <h1>Where every string <em>remembers the steppe</em></h1>
-      <p class="lead">Perne is a neighbourhood music academy teaching dombyra, kobyz, folk singing and piano — to children from age 6 and to adults who always meant to start.</p>
+      <p class="eyebrow" data-i18n="hero.eyebrow">Школа игры на домбре · Астана</p>
+      <h1 data-i18n="hero.title">Каждая струна <em>помнит степь</em></h1>
+      <p class="lead" data-i18n="hero.lead">Perne — школа домбры для детей, подростков и взрослых. Учим от первых аккордов до кюев. Два филиала в Астане.</p>
       <div class="hero__actions">
-        <a class="btn btn--gold" href="#enroll">Book a free trial lesson</a>
-        <a class="btn btn--ghost" href="https://wa.me/77479033089?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5%21%20%D0%A1%D1%8B%D0%BD%D0%B0%D2%9B%20%D1%81%D0%B0%D0%B1%D0%B0%D2%9B%D2%9B%D0%B0%20%D0%B6%D0%B0%D0%B7%D1%8B%D0%BB%D2%93%D1%8B%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96.%20/%20%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D1%8B%D0%B9%20%D1%83%D1%80%D0%BE%D0%BA." target="_blank" rel="noopener" data-wa><svg class="btn__icon" aria-hidden="true"><use href="#i-wa"/></svg>Write on WhatsApp</a>
+        <a class="btn btn--gold" href="#enroll" data-i18n="hero.cta">Записаться на урок</a>
+        <a class="btn btn--ghost" href="https://wa.me/77479033089" target="_blank" rel="noopener" data-wa><svg class="btn__icon" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="hero.wa">Написать в WhatsApp</span></a>
       </div>
       <ul class="stats">
-        <li><strong data-count="14">0</strong><span>years teaching</span></li>
-        <li><strong data-count="320">0</strong><span>students</span></li>
-        <li><strong data-count="18">0</strong><span>teachers</span></li>
+        <li><strong data-count="2">2</strong><span data-i18n="stats.branches">филиала в Астане</span></li>
+        <li><strong>10–19</strong><span data-i18n="stats.hours">часы работы</span></li>
+        <li><strong data-count="2">2</strong><span data-i18n="stats.strings">струны — и вся степь</span></li>
       </ul>
     </div>
 
@@ -173,17 +192,16 @@
         <svg><use href="#rosette"/></svg>
       </div>
       <!-- Playable dombyra: strings are live elements -->
-      <svg class="play-dombyra" id="playDombyra" viewBox="-100 0 400 800" role="img" aria-label="Interactive dombyra. Tap or swipe across the strings to play.">
+      <svg class="play-dombyra" id="playDombyra" viewBox="-100 0 400 800" role="img" data-i18n-attr="aria-label:hero.dombyraAria" aria-label="Интерактивная домбра. Проведите по струнам, чтобы сыграть.">
         <g transform="rotate(14 100 400)">
           <use href="#dombyra" x="0" y="0" width="200" height="800"/>
-          <!-- live strings drawn over the static ones -->
           <g class="live-strings" id="liveStrings" fill="none" stroke="#fff6df" stroke-width="1.8" stroke-linecap="round">
             <path data-string="0" d="M95.5 80Q95.5 390 95.5 704"/>
             <path data-string="1" d="M104.5 80Q104.5 390 104.5 704"/>
           </g>
         </g>
       </svg>
-      <p class="hint"><span class="hint__dot"></span>Swipe across the strings — or tap a fret — to play</p>
+      <p class="hint"><span class="hint__dot"></span><span data-i18n="hero.hint">Проведите по струнам или нажмите на лад — домбра зазвучит</span></p>
     </div>
   </div>
   <div class="band band--bottom" aria-hidden="true"></div>
@@ -203,14 +221,14 @@
       </div>
     </div>
     <div class="about__copy reveal">
-      <p class="eyebrow eyebrow--dark">About the academy</p>
-      <h2>A small school with a <em>long memory</em></h2>
-      <p><strong>Perne</strong> (перне) is the Kazakh word for the frets tied along the neck of a dombyra. We chose it because that is how we teach: one small step at a time, each one in tune.</p>
-      <p>Our students learn the küis of Kurmangazy and Dina Nurpeisova alongside modern repertoire, in groups small enough that every teacher knows every student by name.</p>
+      <p class="eyebrow eyebrow--dark" data-i18n="about.eyebrow">О школе</p>
+      <h2 data-i18n="about.title">Маленькая школа <em>большой традиции</em></h2>
+      <p data-i18n="about.p1"><strong>Перне</strong> — так по-казахски называются лады на грифе домбры. Мы выбрали это слово, потому что так и учим: шаг за шагом, и каждый шаг — чисто.</p>
+      <p data-i18n="about.p2">Мы занимаемся только домброй и отдаём ей всё внимание: постановка рук, кюи Курмангазы и Дины Нурпеисовой, народные песни и современный репертуар.</p>
       <ul class="values">
-        <li><svg aria-hidden="true"><use href="#qm"/></svg><div><h3>Heritage first</h3><p>Traditional küi, terme and folk song are at the core of every program.</p></div></li>
-        <li><svg aria-hidden="true"><use href="#qm"/></svg><div><h3>Small groups</h3><p>Never more than six students per group lesson.</p></div></li>
-        <li><svg aria-hidden="true"><use href="#qm"/></svg><div><h3>On stage, often</h3><p>Every student performs at least twice a year.</p></div></li>
+        <li><svg aria-hidden="true"><use href="#qm"/></svg><div><h3 data-i18n="about.v1t">Традиция в основе</h3><p data-i18n="about.v1">Кюи, терме и народные песни — сердце каждого урока.</p></div></li>
+        <li><svg aria-hidden="true"><use href="#qm"/></svg><div><h3 data-i18n="about.v2t">Внимание каждому</h3><p data-i18n="about.v2">Педагог знает каждого ученика и его темп.</p></div></li>
+        <li><svg aria-hidden="true"><use href="#qm"/></svg><div><h3 data-i18n="about.v3t">Для любого возраста</h3><p data-i18n="about.v3">Учим детей, подростков и взрослых — начать никогда не поздно.</p></div></li>
       </ul>
     </div>
   </div>
@@ -218,158 +236,78 @@
 
 <div class="divider" aria-hidden="true"><span></span><svg><use href="#rosette"/></svg><span></span></div>
 
-<!-- ============ Programs ============ -->
+<!-- ============ Programs (dombyra by age) ============ -->
 <section class="section programs" id="programs">
   <div class="container">
     <header class="section__head reveal">
-      <p class="eyebrow eyebrow--dark">Programs</p>
-      <h2>Find your <em>instrument</em></h2>
-      <div class="tabs" role="tablist" aria-label="Filter programs by age">
-        <button class="tab is-active" role="tab" aria-selected="true" data-filter="all">All</button>
-        <button class="tab" role="tab" aria-selected="false" data-filter="kids">Children 6–12</button>
-        <button class="tab" role="tab" aria-selected="false" data-filter="teens">Teens 13–17</button>
-        <button class="tab" role="tab" aria-selected="false" data-filter="adults">Adults</button>
-      </div>
+      <p class="eyebrow eyebrow--dark" data-i18n="prog.eyebrow">Обучение</p>
+      <h2 data-i18n="prog.title">Домбра для <em>любого возраста</em></h2>
+      <p class="muted" data-i18n="prog.sub">Нажмите на карточку или смахните её, чтобы перевернуть.</p>
     </header>
 
     <div class="cards" id="programCards">
-      <article class="card" data-age="kids teens adults" tabindex="0">
+      <article class="card reveal" tabindex="0">
         <div class="card__inner">
           <div class="card__face card__front">
             <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
             <svg class="card__icon" viewBox="0 0 200 800" aria-hidden="true"><use href="#dombyra"/></svg>
-            <h3>Dombyra</h3>
-            <p>The heart of Kazakh music. From first strums to full küis.</p>
-            <span class="card__flip">Tap for details ↻</span>
+            <h3 data-i18n="prog.kids">Детям</h3>
+            <p data-i18n="prog.kidsP">Занятия в игровой форме: ритм, песни и первые мелодии на домбре.</p>
+            <span class="card__flip" data-i18n="prog.more">Подробнее ↻</span>
           </div>
           <div class="card__face card__back">
-            <h3>Dombyra</h3>
+            <h3 data-i18n="prog.kids">Детям</h3>
             <ul>
-              <li><b>Ages</b> 6+</li>
-              <li><b>Format</b> group or 1-to-1</li>
-              <li><b>Lessons</b> 2 × 45 min / week</li>
-              <li><b>From</b> 18 000 ₸ / month</li>
+              <li data-i18n="prog.kids1">Постановка рук</li>
+              <li data-i18n="prog.kids2">Ритм и музыкальный слух</li>
+              <li data-i18n="prog.kids3">Народные песни</li>
             </ul>
-            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Dombyra">Choose</a>
+            <p class="card__note" data-i18n="prog.price">Стоимость и расписание — в WhatsApp</p>
+            <a class="btn btn--gold btn--sm" href="#enroll" data-who="child" data-i18n="prog.choose">Записаться</a>
           </div>
         </div>
       </article>
 
-      <article class="card" data-age="teens adults" tabindex="0">
+      <article class="card reveal" tabindex="0">
         <div class="card__inner">
           <div class="card__face card__front">
             <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
             <svg class="card__icon card__icon--qm" viewBox="0 0 100 100" aria-hidden="true"><use href="#qm"/></svg>
-            <h3>Kobyz</h3>
-            <p>The ancient bowed voice of the steppe, taught by a master of the instrument.</p>
-            <span class="card__flip">Tap for details ↻</span>
+            <h3 data-i18n="prog.teens">Подросткам</h3>
+            <p data-i18n="prog.teensP">Кюи, техника и уверенная игра — для тех, кто хочет играть всерьёз.</p>
+            <span class="card__flip" data-i18n="prog.more">Подробнее ↻</span>
           </div>
           <div class="card__face card__back">
-            <h3>Kobyz</h3>
+            <h3 data-i18n="prog.teens">Подросткам</h3>
             <ul>
-              <li><b>Ages</b> 12+</li>
-              <li><b>Format</b> 1-to-1</li>
-              <li><b>Lessons</b> 2 × 45 min / week</li>
-              <li><b>From</b> 24 000 ₸ / month</li>
+              <li data-i18n="prog.teens1">Техника қағыс</li>
+              <li data-i18n="prog.teens2">Кюи Курмангазы и Таттимбета</li>
+              <li data-i18n="prog.teens3">Подготовка к выступлениям</li>
             </ul>
-            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Kobyz">Choose</a>
+            <p class="card__note" data-i18n="prog.price">Стоимость и расписание — в WhatsApp</p>
+            <a class="btn btn--gold btn--sm" href="#enroll" data-who="teen" data-i18n="prog.choose">Записаться</a>
           </div>
         </div>
       </article>
 
-      <article class="card" data-age="kids teens adults" tabindex="0">
+      <article class="card reveal" tabindex="0">
         <div class="card__inner">
           <div class="card__face card__front">
             <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
             <svg class="card__icon card__icon--qm" viewBox="0 0 200 200" aria-hidden="true"><use href="#rosette"/></svg>
-            <h3>Folk singing</h3>
-            <p>Terme, zhyr and lyrical songs — breath, diction and stage presence.</p>
-            <span class="card__flip">Tap for details ↻</span>
+            <h3 data-i18n="prog.adults">Взрослым</h3>
+            <p data-i18n="prog.adultsP">Никогда не играли? Отлично — начнём с нуля, в комфортном темпе.</p>
+            <span class="card__flip" data-i18n="prog.more">Подробнее ↻</span>
           </div>
           <div class="card__face card__back">
-            <h3>Folk singing</h3>
+            <h3 data-i18n="prog.adults">Взрослым</h3>
             <ul>
-              <li><b>Ages</b> 7+</li>
-              <li><b>Format</b> group or 1-to-1</li>
-              <li><b>Lessons</b> 2 × 45 min / week</li>
-              <li><b>From</b> 16 000 ₸ / month</li>
+              <li data-i18n="prog.adults1">Обучение с нуля</li>
+              <li data-i18n="prog.adults2">Любимые песни</li>
+              <li data-i18n="prog.adults3">Ваш первый кюй</li>
             </ul>
-            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Folk singing">Choose</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-age="kids teens adults" tabindex="0">
-        <div class="card__inner">
-          <div class="card__face card__front">
-            <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
-            <svg class="card__icon card__icon--keys" viewBox="0 0 120 80" aria-hidden="true">
-              <rect x="2" y="2" width="116" height="76" rx="6" fill="none" stroke="currentColor" stroke-width="3"/>
-              <path d="M18 2V78M34 2V78M50 2V78M66 2V78M82 2V78M98 2V78" stroke="currentColor" stroke-width="2"/>
-              <path d="M13 2H23V46H13ZM29 2H39V46H29ZM61 2H71V46H61ZM77 2H87V46H77ZM93 2H103V46H93Z" fill="currentColor"/>
-            </svg>
-            <h3>Piano</h3>
-            <p>Classical foundation with Kazakh composers in the repertoire.</p>
-            <span class="card__flip">Tap for details ↻</span>
-          </div>
-          <div class="card__face card__back">
-            <h3>Piano</h3>
-            <ul>
-              <li><b>Ages</b> 6+</li>
-              <li><b>Format</b> 1-to-1</li>
-              <li><b>Lessons</b> 2 × 45 min / week</li>
-              <li><b>From</b> 22 000 ₸ / month</li>
-            </ul>
-            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Piano">Choose</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-age="kids teens" tabindex="0">
-        <div class="card__inner">
-          <div class="card__face card__front">
-            <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
-            <svg class="card__icon card__icon--qm" viewBox="0 0 100 100" aria-hidden="true">
-              <path d="M10 30H90M10 45H90M10 60H90M10 75H90" stroke="currentColor" stroke-width="2"/>
-              <ellipse cx="34" cy="68" rx="9" ry="7" fill="currentColor" transform="rotate(-20 34 68)"/>
-              <ellipse cx="66" cy="53" rx="9" ry="7" fill="currentColor" transform="rotate(-20 66 53)"/>
-              <path d="M42 66V22L74 14V51" fill="none" stroke="currentColor" stroke-width="4"/>
-            </svg>
-            <h3>Solfeggio &amp; theory</h3>
-            <p>Reading, ear training and rhythm — playful for kids, rigorous for exams.</p>
-            <span class="card__flip">Tap for details ↻</span>
-          </div>
-          <div class="card__face card__back">
-            <h3>Solfeggio &amp; theory</h3>
-            <ul>
-              <li><b>Ages</b> 6–17</li>
-              <li><b>Format</b> group</li>
-              <li><b>Lessons</b> 1 × 45 min / week</li>
-              <li><b>From</b> 9 000 ₸ / month</li>
-            </ul>
-            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Solfeggio & theory">Choose</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" data-age="adults" tabindex="0">
-        <div class="card__inner">
-          <div class="card__face card__front">
-            <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
-            <svg class="card__icon" viewBox="0 0 200 800" aria-hidden="true"><use href="#dombyra"/></svg>
-            <h3>Dombyra for grown-ups</h3>
-            <p>Evening classes for complete beginners. Instrument provided.</p>
-            <span class="card__flip">Tap for details ↻</span>
-          </div>
-          <div class="card__face card__back">
-            <h3>Dombyra for grown-ups</h3>
-            <ul>
-              <li><b>Ages</b> 18+</li>
-              <li><b>Format</b> group, evenings</li>
-              <li><b>Lessons</b> 1 × 90 min / week</li>
-              <li><b>From</b> 15 000 ₸ / month</li>
-            </ul>
-            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Dombyra for adults">Choose</a>
+            <p class="card__note" data-i18n="prog.price">Стоимость и расписание — в WhatsApp</p>
+            <a class="btn btn--gold btn--sm" href="#enroll" data-who="adult" data-i18n="prog.choose">Записаться</a>
           </div>
         </div>
       </article>
@@ -377,56 +315,46 @@
   </div>
 </section>
 
-<!-- ============ Teachers (swipe carousel) ============ -->
-<section class="section teachers" id="teachers">
+<!-- ============ How it works (swipe carousel) ============ -->
+<section class="section steps" id="steps">
   <div class="band band--top" aria-hidden="true"></div>
   <div class="container">
     <header class="section__head section__head--split reveal">
       <div>
-        <p class="eyebrow">Teachers</p>
-        <h2>Musicians who <em>love to teach</em></h2>
+        <p class="eyebrow" data-i18n="steps.eyebrow">Как проходит обучение</p>
+        <h2 data-i18n="steps.title">Четыре шага <em>к первому кюю</em></h2>
       </div>
       <div class="carousel__ctrls">
-        <button class="round-btn" data-dir="-1" aria-label="Previous teacher">←</button>
-        <button class="round-btn" data-dir="1" aria-label="Next teacher">→</button>
+        <button class="round-btn" data-dir="-1" data-i18n-attr="aria-label:steps.prev" aria-label="Назад">←</button>
+        <button class="round-btn" data-dir="1" data-i18n-attr="aria-label:steps.next" aria-label="Вперёд">→</button>
       </div>
     </header>
 
-    <div class="carousel" id="teacherCarousel" aria-roledescription="carousel">
+    <div class="carousel" id="stepsCarousel" aria-roledescription="carousel">
       <div class="carousel__track">
-        <article class="teacher">
-          <div class="teacher__avatar"><svg aria-hidden="true"><use href="#rosette"/></svg><span>АН</span></div>
-          <h3>Aigerim Nurlanqyzy</h3>
-          <p class="teacher__role">Dombyra · Head of school</p>
-          <p>Laureate of the Republican küi competition. Teaches the Western (Batys) tökpe style.</p>
+        <article class="step">
+          <div class="step__badge"><svg aria-hidden="true"><use href="#rosette"/></svg><span>1</span></div>
+          <h3 data-i18n="steps.s1t">Заявка</h3>
+          <p data-i18n="steps.s1">Напишите нам в WhatsApp или заполните форму — ответим и подберём удобное время.</p>
         </article>
-        <article class="teacher">
-          <div class="teacher__avatar"><svg aria-hidden="true"><use href="#rosette"/></svg><span>ЕС</span></div>
-          <h3>Yerlan Sadyqov</h3>
-          <p class="teacher__role">Kobyz</p>
-          <p>Twenty years with the kobyz, from conservatory to folk orchestra.</p>
+        <article class="step">
+          <div class="step__badge"><svg aria-hidden="true"><use href="#rosette"/></svg><span>2</span></div>
+          <h3 data-i18n="steps.s2t">Знакомство</h3>
+          <p data-i18n="steps.s2">Первое занятие: знакомимся, проверяем слух и ритм, берём домбру в руки.</p>
         </article>
-        <article class="teacher">
-          <div class="teacher__avatar"><svg aria-hidden="true"><use href="#rosette"/></svg><span>ДА</span></div>
-          <h3>Dana Amanova</h3>
-          <p class="teacher__role">Folk singing</p>
-          <p>Specialises in terme and children's voice — patient, warm and exacting.</p>
+        <article class="step">
+          <div class="step__badge"><svg aria-hidden="true"><use href="#rosette"/></svg><span>3</span></div>
+          <h3 data-i18n="steps.s3t">Занятия</h3>
+          <p data-i18n="steps.s3">Регулярные уроки в одном из двух филиалов, с 10:00 до 19:00.</p>
         </article>
-        <article class="teacher">
-          <div class="teacher__avatar"><svg aria-hidden="true"><use href="#rosette"/></svg><span>ТБ</span></div>
-          <h3>Timur Bekov</h3>
-          <p class="teacher__role">Piano · Theory</p>
-          <p>Prepares students for music college entrance exams.</p>
-        </article>
-        <article class="teacher">
-          <div class="teacher__avatar"><svg aria-hidden="true"><use href="#rosette"/></svg><span>ЖҚ</span></div>
-          <h3>Zhanar Qasymova</h3>
-          <p class="teacher__role">Dombyra · Children</p>
-          <p>Her youngest students start with songs and games before their first küi.</p>
+        <article class="step">
+          <div class="step__badge"><svg aria-hidden="true"><use href="#rosette"/></svg><span>4</span></div>
+          <h3 data-i18n="steps.s4t">Первый кюй</h3>
+          <p data-i18n="steps.s4">Тот самый день, когда вы сыграете целое произведение от начала до конца.</p>
         </article>
       </div>
     </div>
-    <div class="dots" id="teacherDots" aria-hidden="true"></div>
+    <div class="dots" id="stepsDots" aria-hidden="true"></div>
   </div>
   <div class="band band--bottom" aria-hidden="true"></div>
 </section>
@@ -435,150 +363,76 @@
 <section class="section gallery" id="gallery">
   <div class="container">
     <header class="section__head reveal">
-      <p class="eyebrow eyebrow--dark">Gallery</p>
-      <h2>The <em>dombyra</em>, up close</h2>
-      <p class="muted">Tap any picture to open it. Swipe to browse.</p>
+      <p class="eyebrow eyebrow--dark" data-i18n="gal.eyebrow">Галерея</p>
+      <h2 data-i18n="gal.title">Домбра <em>вблизи</em></h2>
+      <p class="muted" data-i18n="gal.sub">Нажмите на картинку, чтобы открыть. Листайте свайпом.</p>
     </header>
 
     <div class="masonry" id="gallery-grid">
-      <button class="tile tile--tall tile--night" data-caption="A two-stringed dombyra, tuned D–G">
+      <button class="tile tile--tall tile--night" data-i18n-attr="data-caption:gal.c1" data-caption="Домбра в строе ре–соль">
         <svg viewBox="0 0 300 520" aria-hidden="true">
           <use href="#rosette" x="30" y="140" width="240" height="240" class="tile__rosette"/>
           <use href="#dombyra" x="70" y="20" width="160" height="480" transform="rotate(-8 150 260)"/>
         </svg>
-        <span class="tile__cap">Tuned D–G</span>
+        <span class="tile__cap" data-i18n="gal.t1">Строй ре–соль</span>
       </button>
-      <button class="tile tile--sand" data-caption="Crossed dombyras — the duet">
+      <button class="tile tile--sand" data-i18n-attr="data-caption:gal.c2" data-caption="Две домбры — дуэт">
         <svg viewBox="0 0 300 300" aria-hidden="true">
           <use href="#dombyra" x="85" y="10" width="95" height="280" transform="rotate(-28 150 150)"/>
           <use href="#dombyra" x="120" y="10" width="95" height="280" transform="rotate(28 150 150)"/>
         </svg>
-        <span class="tile__cap">The duet</span>
+        <span class="tile__cap" data-i18n="gal.t2">Дуэт</span>
       </button>
-      <button class="tile tile--red" data-caption="Qoshqar müiz — the ram-horn ornament carved into the body">
+      <button class="tile tile--red" data-i18n-attr="data-caption:gal.c3" data-caption="Қошқар мүйіз — орнамент «бараний рог» на корпусе домбры">
         <svg viewBox="0 0 300 300" aria-hidden="true">
           <use href="#qm" x="50" y="40" width="200" height="200" class="tile__orn"/>
           <use href="#qm" x="10" y="220" width="70" height="70" class="tile__orn"/>
           <use href="#qm" x="220" y="220" width="70" height="70" class="tile__orn"/>
         </svg>
-        <span class="tile__cap">Qoshqar müiz</span>
+        <span class="tile__cap">Қошқар мүйіз</span>
       </button>
-      <button class="tile tile--wide tile--night" data-caption="Perne — the tied frets that gave our academy its name">
+      <button class="tile tile--wide tile--night" data-i18n-attr="data-caption:gal.c4" data-caption="Перне — подвязанные лады, которые дали имя нашей школе">
         <svg viewBox="0 0 600 300" aria-hidden="true">
           <use href="#dombyra" x="150" y="-450" width="300" height="1200" transform="rotate(90 300 150)"/>
         </svg>
-        <span class="tile__cap">Perne — the frets</span>
+        <span class="tile__cap" data-i18n="gal.t4">Перне — лады</span>
       </button>
-      <button class="tile tile--sand tile--wide-sm" data-caption="The head and its two tuning pegs (qulaq)">
+      <button class="tile tile--sand tile--wide-sm" data-i18n-attr="data-caption:gal.c5" data-caption="Головка грифа и два колка — құлақ">
         <svg viewBox="0 0 300 300" aria-hidden="true">
           <use href="#dombyra" x="40" y="10" width="220" height="880"/>
         </svg>
-        <span class="tile__cap">Qulaq — the pegs</span>
+        <span class="tile__cap" data-i18n="gal.t5">Колки — құлақ</span>
       </button>
-      <button class="tile tile--wide tile--red" data-caption="Three generations, one instrument">
+      <button class="tile tile--wide tile--red" data-i18n-attr="data-caption:gal.c6" data-caption="Три поколения — один инструмент">
         <svg viewBox="0 0 600 300" aria-hidden="true">
           <use href="#dombyra" x="235" y="-180" width="130" height="520" transform="rotate(-84 300 80)"/>
           <use href="#dombyra" x="241.25" y="-75" width="117.5" height="470" transform="rotate(-90 300 160)"/>
           <use href="#dombyra" x="260" y="36" width="100" height="400" transform="rotate(-95 310 236)"/>
         </svg>
-        <span class="tile__cap">Three generations</span>
+        <span class="tile__cap" data-i18n="gal.t6">Три поколения</span>
       </button>
     </div>
   </div>
 </section>
 
 <!-- Lightbox -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery viewer" hidden>
-  <button class="lightbox__close" aria-label="Close">×</button>
-  <button class="lightbox__nav lightbox__nav--prev" aria-label="Previous">‹</button>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" data-i18n-attr="aria-label:lb.aria" aria-label="Просмотр галереи" hidden>
+  <button class="lightbox__close" data-i18n-attr="aria-label:lb.close" aria-label="Закрыть">×</button>
+  <button class="lightbox__nav lightbox__nav--prev" data-i18n-attr="aria-label:lb.prev" aria-label="Предыдущая">‹</button>
   <figure class="lightbox__figure">
     <div class="lightbox__stage" id="lightboxStage"></div>
     <figcaption id="lightboxCaption"></figcaption>
   </figure>
-  <button class="lightbox__nav lightbox__nav--next" aria-label="Next">›</button>
+  <button class="lightbox__nav lightbox__nav--next" data-i18n-attr="aria-label:lb.next" aria-label="Следующая">›</button>
 </div>
 
-<!-- ============ Testimonials ============ -->
-<section class="section quotes">
-  <div class="container">
-    <div class="quote-swiper reveal" id="quotes">
-      <svg class="quotes__mark" aria-hidden="true"><use href="#rosette"/></svg>
-      <div class="quote-swiper__track">
-        <blockquote class="quote">
-          <p>“My daughter played “Adai” at the spring concert after one year. I cried the whole way through.”</p>
-          <cite>— Saule, mother of Ayaru (9)</cite>
-        </blockquote>
-        <blockquote class="quote">
-          <p>“I started dombyra at 41. The evening group is the best two hours of my week.”</p>
-          <cite>— Nurlan, adult student</cite>
-        </blockquote>
-        <blockquote class="quote">
-          <p>“Strict where it matters, kind everywhere else. Our son got into music college.”</p>
-          <cite>— the Ospanov family</cite>
-        </blockquote>
-      </div>
-      <div class="dots dots--light" id="quoteDots"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ Events ============ -->
-<section class="section events" id="events">
-  <div class="container">
-    <header class="section__head reveal">
-      <p class="eyebrow eyebrow--dark">Concerts &amp; events</p>
-      <h2>Come and <em>listen</em></h2>
-    </header>
-    <ol class="event-list">
-      <li class="event reveal">
-        <time datetime="2026-11-08"><b>08</b>Nov</time>
-        <div><h3>Autumn küi evening</h3><p>Senior students perform Kurmangazy and Tattimbet · Free entry</p></div>
-        <span class="tag">Concert</span>
-      </li>
-      <li class="event reveal">
-        <time datetime="2026-11-22"><b>22</b>Nov</time>
-        <div><h3>Open day &amp; trial lessons</h3><p>Try every instrument, meet the teachers · Ages 6+</p></div>
-        <span class="tag tag--gold">Open day</span>
-      </li>
-      <li class="event reveal">
-        <time datetime="2026-12-16"><b>16</b>Dec</time>
-        <div><h3>Independence Day concert</h3><p>Ensemble, choir and soloists on the main stage</p></div>
-        <span class="tag">Concert</span>
-      </li>
-      <li class="event reveal">
-        <time datetime="2027-03-21"><b>21</b>Mar</time>
-        <div><h3>Nauryz celebration</h3><p>Folk songs, aitys demonstration and baursaks for everyone</p></div>
-        <span class="tag tag--red">Festival</span>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="section faq">
-  <div class="container container--narrow">
-    <header class="section__head reveal">
-      <p class="eyebrow eyebrow--dark">Questions</p>
-      <h2>Before you <em>enroll</em></h2>
-    </header>
-    <div class="accordion">
-      <details class="acc reveal">
-        <summary>Do I need my own dombyra?</summary>
-        <p>No. For the first three months we lend every student an instrument. After that our teachers help you choose one that fits your hand and budget.</p>
-      </details>
-      <details class="acc reveal">
-        <summary>What is the youngest age you accept?</summary>
-        <p>Six years for instruments and singing. Children of five can join the “Little musicians” rhythm-and-song group.</p>
-      </details>
-      <details class="acc reveal">
-        <summary>Is it too late to start as an adult?</summary>
-        <p>Never. Our evening group has students from 19 to 67. Most play their first full küi within a year.</p>
-      </details>
-      <details class="acc reveal">
-        <summary>Is the trial lesson really free?</summary>
-        <p>Yes — 30 minutes with a teacher, no obligation. Book it on WhatsApp or with the form below.</p>
-      </details>
-    </div>
+<!-- ============ Instagram ============ -->
+<section class="section insta">
+  <div class="container insta__inner reveal">
+    <svg class="insta__mark" aria-hidden="true"><use href="#rosette"/></svg>
+    <h2 data-i18n="ig.title">Следите за школой <em>в Instagram</em></h2>
+    <p class="lead" data-i18n="ig.lead">Уроки, выступления учеников и жизнь школы.</p>
+    <a class="btn btn--ig" href="https://www.instagram.com/perne_dombyra/" target="_blank" rel="noopener"><svg class="btn__icon" aria-hidden="true"><use href="#i-ig"/></svg>@perne_dombyra</a>
   </div>
 </section>
 
@@ -587,75 +441,66 @@
   <div class="hero__pattern" aria-hidden="true"></div>
   <div class="container enroll__grid" id="contact">
     <div class="enroll__info reveal">
-      <p class="eyebrow">Enroll</p>
-      <h2>Book a <em>free</em> trial lesson</h2>
-      <p class="lead">Message us on WhatsApp, or fill in the form and it will open WhatsApp with your details ready to send.</p>
+      <p class="eyebrow" data-i18n="enr.eyebrow">Запись</p>
+      <h2 data-i18n="enr.title">Запишитесь <em>на урок</em></h2>
+      <p class="lead" data-i18n="enr.lead">Напишите нам в WhatsApp или заполните форму — она откроет WhatsApp с готовым сообщением.</p>
       <div class="social">
-        <a class="btn btn--wa" href="https://wa.me/77479033089?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5%21%20%D0%A1%D1%8B%D0%BD%D0%B0%D2%9B%20%D1%81%D0%B0%D0%B1%D0%B0%D2%9B%D2%9B%D0%B0%20%D0%B6%D0%B0%D0%B7%D1%8B%D0%BB%D2%93%D1%8B%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96.%20/%20%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D1%8B%D0%B9%20%D1%83%D1%80%D0%BE%D0%BA." target="_blank" rel="noopener" data-wa><svg class="btn__icon" aria-hidden="true"><use href="#i-wa"/></svg>+7 747 903 30 89</a>
+        <a class="btn btn--wa" href="https://wa.me/77479033089" target="_blank" rel="noopener" data-wa><svg class="btn__icon" aria-hidden="true"><use href="#i-wa"/></svg>+7 747 903 30 89</a>
         <a class="btn btn--ig" href="https://www.instagram.com/perne_dombyra/" target="_blank" rel="noopener"><svg class="btn__icon" aria-hidden="true"><use href="#i-ig"/></svg>@perne_dombyra</a>
       </div>
+      <p class="hours"><svg aria-hidden="true"><use href="#i-clock"/></svg><span data-i18n="enr.hours">Часы работы:</span> <strong>10:00–19:00</strong></p>
       <div class="branches">
         <article class="branch">
           <svg class="branch__pin" aria-hidden="true"><use href="#i-pin"/></svg>
           <div>
-            <p class="branch__label">Branch 1 · Almaty district</p>
+            <p class="branch__label" data-i18n="br1.label">Филиал 1 · район Алматы</p>
             <address>
-              <strong>Алексей Петров көшесі, 25</strong>
-              3 қабат, 9 кабинет<br>
-              Алматы ауданы, Астана · Z00T5Y1
+              <strong data-i18n="br1.street">ул. Алексея Петрова, 25</strong>
+              <span data-i18n="br1.room">3 этаж, кабинет 9</span><br>
+              <span data-i18n="br1.area">район Алматы, Астана</span> · Z00T5Y1
             </address>
-            <p class="branch__maps"><a href="https://2gis.kz/astana/search/%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9%20%D0%9F%D0%B5%D1%82%D1%80%D0%BE%D0%B2%20%D0%BA%D3%A9%D1%88%D0%B5%D1%81%D1%96%2025" target="_blank" rel="noopener">Open in 2GIS</a><a href="https://www.google.com/maps/search/?api=1&query=%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9%20%D0%9F%D0%B5%D1%82%D1%80%D0%BE%D0%B2%20%D0%BA%D3%A9%D1%88%D0%B5%D1%81%D1%96%2025%2C%20%D0%90%D1%81%D1%82%D0%B0%D0%BD%D0%B0" target="_blank" rel="noopener">Google Maps</a></p>
+            <p class="branch__maps"><a href="https://2gis.kz/astana/search/Алексей%20Петров%20көшесі%2025" target="_blank" rel="noopener" data-i18n="map.2gis">Открыть в 2GIS</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Алексей%20Петров%20көшесі%2025%2C%20Астана" target="_blank" rel="noopener">Google Maps</a></p>
           </div>
         </article>
         <article class="branch">
           <svg class="branch__pin" aria-hidden="true"><use href="#i-pin"/></svg>
           <div>
-            <p class="branch__label">Branch 2 · Esil district</p>
+            <p class="branch__label" data-i18n="br2.label">Филиал 2 · район Есиль</p>
             <address>
-              <strong>Сығанақ көшесі, 54а</strong>
-              7 қабат, 708/2 кеңсе<br>
-              Есіл ауданы, Астана · 010017 / Z05K6Y0
+              <strong data-i18n="br2.street">ул. Сыганак, 54а</strong>
+              <span data-i18n="br2.room">7 этаж, офис 708/2</span><br>
+              <span data-i18n="br2.area">район Есиль, Астана</span> · 010017 / Z05K6Y0
             </address>
-            <p class="branch__maps"><a href="https://2gis.kz/astana/search/%D0%A1%D1%8B%D2%93%D0%B0%D0%BD%D0%B0%D2%9B%20%D0%BA%D3%A9%D1%88%D0%B5%D1%81%D1%96%2054%D0%B0" target="_blank" rel="noopener">Open in 2GIS</a><a href="https://www.google.com/maps/search/?api=1&query=%D0%A1%D1%8B%D2%93%D0%B0%D0%BD%D0%B0%D2%9B%20%D0%BA%D3%A9%D1%88%D0%B5%D1%81%D1%96%2054%D0%B0%2C%20%D0%90%D1%81%D1%82%D0%B0%D0%BD%D0%B0" target="_blank" rel="noopener">Google Maps</a></p>
+            <p class="branch__maps"><a href="https://2gis.kz/astana/search/Сығанақ%20көшесі%2054а" target="_blank" rel="noopener" data-i18n="map.2gis">Открыть в 2GIS</a><a href="https://www.google.com/maps/search/?api=1&amp;query=Сығанақ%20көшесі%2054а%2C%20Астана" target="_blank" rel="noopener">Google Maps</a></p>
           </div>
         </article>
       </div>
-      <p class="call-line">Prefer to call? <a href="tel:+77479033089">+7 747 903 30 89</a></p>
+      <p class="call-line"><span data-i18n="enr.call">Удобнее позвонить?</span> <a href="tel:+77479033089">+7 747 903 30 89</a></p>
     </div>
+
     <form class="form reveal" id="enrollForm" novalidate>
       <svg class="form__corner" aria-hidden="true"><use href="#corner"/></svg>
-      <label>Your name
-        <input name="name" required autocomplete="name" placeholder="Aruzhan">
+      <label><span data-i18n="form.name">Ваше имя</span>
+        <input name="name" required autocomplete="name" data-i18n-attr="placeholder:form.namePh" placeholder="Аружан">
       </label>
-      <label>Phone
+      <label><span data-i18n="form.phone">Телефон</span>
         <input name="phone" type="tel" required autocomplete="tel" placeholder="+7 7__ ___ __ __">
       </label>
-      <label>Program
-        <select name="program" id="programSelect">
-          <option>Dombyra</option>
-          <option>Dombyra for adults</option>
-          <option>Kobyz</option>
-          <option>Folk singing</option>
-          <option>Piano</option>
-          <option>Solfeggio &amp; theory</option>
-          <option>Not sure yet</option>
-        </select>
-      </label>
       <fieldset class="chips">
-        <legend>Student age</legend>
-        <label><input type="radio" name="age" value="6–12" checked><span>6–12</span></label>
-        <label><input type="radio" name="age" value="13–17"><span>13–17</span></label>
-        <label><input type="radio" name="age" value="18+"><span>18+</span></label>
+        <legend data-i18n="form.who">Кто будет учиться</legend>
+        <label><input type="radio" name="who" value="child" checked><span data-i18n="form.child">Ребёнок</span></label>
+        <label><input type="radio" name="who" value="teen"><span data-i18n="form.teen">Подросток</span></label>
+        <label><input type="radio" name="who" value="adult"><span data-i18n="form.adult">Взрослый</span></label>
       </fieldset>
-      <label>Branch
+      <label><span data-i18n="form.branch">Филиал</span>
         <select name="branch">
-          <option>Алексей Петров көшесі, 25</option>
-          <option>Сығанақ көшесі, 54а</option>
-          <option>Any branch</option>
+          <option value="1" data-i18n="br1.street">ул. Алексея Петрова, 25</option>
+          <option value="2" data-i18n="br2.street">ул. Сыганак, 54а</option>
+          <option value="any" data-i18n="form.anyBranch">Любой филиал</option>
         </select>
       </label>
-      <button class="btn btn--wa btn--block" type="submit"><svg class="btn__icon" aria-hidden="true"><use href="#i-wa"/></svg>Send via WhatsApp</button>
-      <p class="form__note">Opens WhatsApp with your request filled in. Nothing is stored on this site.</p>
+      <button class="btn btn--wa btn--block" type="submit"><svg class="btn__icon" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="form.submit">Отправить в WhatsApp</span></button>
+      <p class="form__note" data-i18n="form.note">Откроется WhatsApp с заполненной заявкой. Сайт ничего не хранит.</p>
     </form>
   </div>
 </section>
@@ -667,29 +512,30 @@
   <div class="container footer__inner">
     <a class="logo" href="#top">
       <svg class="logo__mark" aria-hidden="true"><use href="#rosette"/></svg>
-      <span class="logo__text">Perne<small>Music Academy</small></span>
+      <span class="logo__text">Perne<small data-i18n="logo.sub">Школа домбры</small></span>
     </a>
-    <nav class="footer__nav" aria-label="Footer">
-      <a href="#programs">Programs</a>
-      <a href="#teachers">Teachers</a>
-      <a href="#events">Concerts</a>
-      <a href="#enroll">Enroll</a>
+    <nav class="footer__nav" data-i18n-attr="aria-label:nav.footer" aria-label="Меню в подвале">
+      <a href="#about" data-i18n="nav.about">О школе</a>
+      <a href="#programs" data-i18n="nav.programs">Обучение</a>
+      <a href="#gallery" data-i18n="nav.gallery">Галерея</a>
+      <a href="#enroll" data-i18n="nav.cta">Записаться</a>
     </nav>
     <div class="footer__social">
-      <a href="https://wa.me/77479033089?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5%21%20%D0%A1%D1%8B%D0%BD%D0%B0%D2%9B%20%D1%81%D0%B0%D0%B1%D0%B0%D2%9B%D2%9B%D0%B0%20%D0%B6%D0%B0%D0%B7%D1%8B%D0%BB%D2%93%D1%8B%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96.%20/%20%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D1%8B%D0%B9%20%D1%83%D1%80%D0%BE%D0%BA." target="_blank" rel="noopener" aria-label="WhatsApp" data-wa><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+      <a href="https://wa.me/77479033089" target="_blank" rel="noopener" aria-label="WhatsApp" data-wa><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
       <a href="https://www.instagram.com/perne_dombyra/" target="_blank" rel="noopener" aria-label="Instagram @perne_dombyra"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
     </div>
-    <p class="footer__addr">Алексей Петров көшесі, 25 · Сығанақ көшесі, 54а · Астана</p>
-    <p class="footer__copy">© <span id="year">2026</span> Perne Music Academy</p>
+    <p class="footer__addr"><span data-i18n="br1.street">ул. Алексея Петрова, 25</span> · <span data-i18n="br2.street">ул. Сыганак, 54а</span> · <span data-i18n="foot.city">Астана</span> · 10:00–19:00</p>
+    <p class="footer__copy">© <span id="year">2026</span> Perne · <span data-i18n="logo.sub">Школа домбры</span></p>
   </div>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
-<a class="wa-float" href="https://wa.me/77479033089?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5%21%20%D0%A1%D1%8B%D0%BD%D0%B0%D2%9B%20%D1%81%D0%B0%D0%B1%D0%B0%D2%9B%D2%9B%D0%B0%20%D0%B6%D0%B0%D0%B7%D1%8B%D0%BB%D2%93%D1%8B%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96.%20/%20%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B1%D0%BD%D1%8B%D0%B9%20%D1%83%D1%80%D0%BE%D0%BA." target="_blank" rel="noopener" aria-label="Write to us on WhatsApp" data-wa>
+<button class="to-top" id="toTop" data-i18n-attr="aria-label:toTop" aria-label="Наверх">↑</button>
+<a class="wa-float" href="https://wa.me/77479033089" target="_blank" rel="noopener" data-i18n-attr="aria-label:hero.wa" aria-label="Написать в WhatsApp" data-wa>
   <svg aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span>
 </a>
 
+<script src="js/i18n.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>
