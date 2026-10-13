@@ -23,8 +23,16 @@ npx serve .
 - **Gallery**: tap to open the lightbox. Swipe sideways to browse, swipe down or press Esc to close.
 - Click ripples, scroll reveals, counters, a full-screen mobile menu (swipe right to close) and form validation.
 
-## Before going live, replace the placeholders
+## Contacts (real)
 
-- Teacher names, bios, prices, address, phone, email and concert dates are all **placeholders**.
-- The enrollment form **does not send anything** yet. Connect it to a form service (Formspree, Getform, a Telegram bot, a CRM) in `js/main.js` → "Enrollment form".
+- WhatsApp: +7 747 903 30 89 (floating button, hero, contact section, footer, and the enrollment form)
+- Instagram: [@perne_dombyra](https://www.instagram.com/perne_dombyra/)
+- Branch 1: Алексей Петров көшесі, 25, 3 қабат, 9 кабинет, Алматы ауданы, Астана, Z00T5Y1
+- Branch 2: Сығанақ көшесі, 54а, 7 қабат, 708/2 кеңсе, Есіл ауданы, Астана, 010017 / Z05K6Y0
+
+The enrollment form has no backend. It opens WhatsApp with the student's name, phone, program, age and branch already written, and the visitor presses Send.
+
+## Still placeholders
+
+- Teacher names and bios, programs, prices, stats and concert dates.
 - The gallery uses illustrations. Real photos of your students and instruments will look better: replace the `<svg>` inside any `.tile` with an `<img>`.

@@ -459,6 +459,7 @@
   })();
 
   /* ---------- Enrollment form ---------- */
+  const WHATSAPP = "https://wa.me/77479033089";
   const toast = $("#toast");
   const showToast = (msg) => {
     toast.textContent = msg;
@@ -478,8 +479,22 @@
       if (!valid) { void el.offsetWidth; el.classList.add("is-invalid"); ok = false; }
     });
     if (!ok) { showToast("Please enter your name and a valid phone number."); return; }
-    // No backend yet: hook this up to a form service or CRM before going live.
-    showToast(`Рахмет, ${name}! We will call you within one working day.`);
+    // No backend: the request is handed to the academy's WhatsApp, prefilled.
+    const f = form.elements;
+    const text = [
+      "Сәлеметсіз бе! / Здравствуйте!",
+      "Сынақ сабаққа жазылғым келеді / Хочу записаться на пробный урок.",
+      "",
+      "Аты / Имя: " + name,
+      "Телефон: " + phoneEl.value.trim(),
+      "Бағдарлама / Программа: " + f.namedItem("program").value,
+      "Жасы / Возраст: " + f.namedItem("age").value,
+      "Филиал: " + f.namedItem("branch").value,
+    ].join("\n");
+    const url = WHATSAPP + "?text=" + encodeURIComponent(text);
+    const win = window.open(url, "_blank");
+    if (win) win.opener = null; else location.href = url;
+    showToast(`Рахмет, ${name}! Press “Send” in WhatsApp to finish.`);
     form.reset();
   });
   $$("input", form).forEach((el) => el.addEventListener("input", () => el.classList.remove("is-invalid")));
