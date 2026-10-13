@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140">
+  <g fill="none" stroke="#d6a744" stroke-width="2" stroke-linecap="round" opacity=".9">
+    <g id="h">
+      <path d="M70 70V56C70 46 77 40 85 40C92 40 96 46 95 52C94 58 87 60 84 56C81.5 52.5 84 49 87.5 50"/>
+      <path d="M70 56C70 46 63 40 55 40C48 40 44 46 45 52C46 58 53 60 56 56C58.5 52.5 56 49 52.5 50"/>
+    </g>
+    <use href="#h" transform="rotate(90 70 70)"/>
+    <use href="#h" transform="rotate(180 70 70)"/>
+    <use href="#h" transform="rotate(270 70 70)"/>
+    <circle cx="70" cy="70" r="5"/>
+  </g>
+  <g fill="#d6a744" opacity=".9">
+    <path d="M0 -6L6 0L0 6L-6 0Z M140 -6L146 0L140 6L134 0Z M0 134L6 140L0 146L-6 140Z M140 134L146 140L140 146L134 140Z"/>
+    <path d="M70 26L74 31L70 36L66 31Z M70 104L74 109L70 114L66 109Z M26 70L31 66L36 70L31 74Z M104 70L109 66L114 70L109 74Z"/>
+  </g>
+</svg>
