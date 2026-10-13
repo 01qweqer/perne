@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Perne Music Academy</title>
+  <meta name="description" content="Perne — a local music academy for dombyra, kobyz, folk singing and piano. Lessons for children, teens and adults.">
+  <meta name="theme-color" content="#0f1d3d">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+
+<!-- ============ SVG sprite: ornaments + dombyra ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Qoshqar müiz (ram horn) — the core Kazakh ornament -->
+    <symbol id="qm" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M50 94V58C50 40 61 29 74 29C86 29 93 39 91 49C89 58 78 61 72 54C67 48 71 41 78 43"/>
+        <path d="M50 58C50 40 39 29 26 29C14 29 7 39 9 49C11 58 22 61 28 54C33 48 29 41 22 43"/>
+        <path d="M50 80C43 80 37 85 36 92M50 80C57 80 63 85 64 92"/>
+      </g>
+      <path d="M50 4L58 15L50 26L42 15Z" fill="currentColor"/>
+    </symbol>
+
+    <!-- Rosette: four ram horns around a centre (shanyraq-like) -->
+    <symbol id="rosette" viewBox="0 0 200 200">
+      <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round">
+        <g id="rh">
+          <path d="M100 100V78C100 62 110 52 122 52C133 52 139 61 137 70C135 79 125 81 120 75C116 70 119 64 125 65"/>
+          <path d="M100 78C100 62 90 52 78 52C67 52 61 61 63 70C65 79 75 81 80 75C84 70 81 64 75 65"/>
+        </g>
+        <use href="#rh" transform="rotate(90 100 100)"/>
+        <use href="#rh" transform="rotate(180 100 100)"/>
+        <use href="#rh" transform="rotate(270 100 100)"/>
+        <circle cx="100" cy="100" r="8"/>
+        <circle cx="100" cy="100" r="92" stroke-width="3"/>
+        <circle cx="100" cy="100" r="84" stroke-width="1.5" stroke-dasharray="2 7"/>
+      </g>
+      <g fill="currentColor">
+        <path d="M100 18L106 26L100 34L94 26Z"/>
+        <path d="M100 166L106 174L100 182L94 174Z"/>
+        <path d="M18 100L26 94L34 100L26 106Z"/>
+        <path d="M166 100L174 94L182 100L174 106Z"/>
+      </g>
+    </symbol>
+
+    <!-- Corner ornament for cards -->
+    <symbol id="corner" viewBox="0 0 60 60">
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+        <path d="M4 56V20C4 11 11 4 20 4H56"/>
+        <path d="M14 46V26C14 19 19 14 26 14H46"/>
+        <path d="M24 24C30 24 34 28 34 33C34 38 29 40 26.5 37.5C24.5 35.5 26 32.5 28.5 33"/>
+      </g>
+    </symbol>
+
+    <!-- Wood & lacquer gradients -->
+    <radialGradient id="wood" cx="42%" cy="38%" r="70%">
+      <stop offset="0" stop-color="#e2a560"/>
+      <stop offset=".45" stop-color="#b56f33"/>
+      <stop offset="1" stop-color="#5e3215"/>
+    </radialGradient>
+    <linearGradient id="neck" x1="0" x2="1">
+      <stop offset="0" stop-color="#3a1f0d"/>
+      <stop offset=".45" stop-color="#7a4520"/>
+      <stop offset="1" stop-color="#2f180a"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".35"/>
+      <stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Dombyra (static) — reused across the gallery -->
+    <symbol id="dombyra" viewBox="0 0 200 800">
+      <!-- body -->
+      <path d="M100 452C131 452 151 497 165 556C184 636 190 700 171 744C156 776 126 788 100 788C74 788 44 776 29 744C10 700 16 636 35 556C49 497 69 452 100 452Z" fill="url(#wood)"/>
+      <path d="M100 466C126 466 143 506 155 558C172 632 177 694 160 734C147 762 122 772 100 772C78 772 53 762 40 734C23 694 28 632 45 558C57 506 74 466 100 466Z" fill="none" stroke="#f3d48a" stroke-width="2" stroke-dasharray="1 5" stroke-linecap="round" opacity=".8"/>
+      <path d="M100 452C131 452 151 497 165 556C176 602 182 640 181 672C150 600 110 520 60 500C70 470 84 452 100 452Z" fill="url(#sheen)"/>
+      <!-- inlay -->
+      <use href="#qm" x="62" y="540" width="76" height="76" color="#f3d48a"/>
+      <circle cx="100" cy="640" r="9" fill="#2b1608"/>
+      <circle cx="100" cy="640" r="13" fill="none" stroke="#f3d48a" stroke-width="1.5"/>
+      <!-- neck -->
+      <path d="M90 64H110L113 476H87Z" fill="url(#neck)"/>
+      <!-- frets (perne) -->
+      <g stroke="#d9b36a" stroke-width="2.2" stroke-linecap="round" opacity=".9">
+        <path d="M89 115H111M89 148H111M89 179H111M88 209H112M88 237H112M88 263H112M88 288H112M88 311H112M88 333H112M88 354H112M87.5 374H112.5M87.5 392H112.5M87.5 410H112.5M87.5 427H112.5M87 442H113M87 457H113"/>
+      </g>
+      <!-- head -->
+      <path d="M88 8C88 4 112 4 112 8L114 72H86Z" fill="#3a1f0d"/>
+      <rect x="58" y="22" width="30" height="9" rx="4.5" fill="#caa25a"/>
+      <rect x="112" y="44" width="30" height="9" rx="4.5" fill="#caa25a"/>
+      <circle cx="60" cy="26.5" r="7" fill="#caa25a"/>
+      <circle cx="140" cy="48.5" r="7" fill="#caa25a"/>
+      <rect x="86" y="74" width="28" height="6" rx="2" fill="#efe3c6"/>
+      <!-- bridge + tail -->
+      <rect x="84" y="700" width="32" height="8" rx="2" fill="#efe3c6"/>
+      <rect x="92" y="764" width="16" height="12" rx="3" fill="#2b1608"/>
+      <!-- strings -->
+      <g stroke="#f7efdc" stroke-width="1.4">
+        <path d="M95.5 27V770M104.5 49V770"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ Header ============ -->
+<header class="header" id="top">
+  <div class="header__inner container">
+    <a class="logo" href="#top" aria-label="Perne Music Academy — home">
+      <svg class="logo__mark" aria-hidden="true"><use href="#rosette"/></svg>
+      <span class="logo__text">Perne<small>Music Academy</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#teachers">Teachers</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#events">Concerts</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn--gold nav__cta" href="#enroll">Enroll</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <div class="hero__pattern" aria-hidden="true"></div>
+  <div class="hero__inner container">
+    <div class="hero__copy reveal">
+      <p class="eyebrow">Қош келдіңіз · Welcome</p>
+      <h1>Where every string <em>remembers the steppe</em></h1>
+      <p class="lead">Perne is a neighbourhood music academy teaching dombyra, kobyz, folk singing and piano — to children from age 6 and to adults who always meant to start.</p>
+      <div class="hero__actions">
+        <a class="btn btn--gold" href="#enroll">Book a free trial lesson</a>
+        <a class="btn btn--ghost" href="#programs">See programs</a>
+      </div>
+      <ul class="stats">
+        <li><strong data-count="14">0</strong><span>years teaching</span></li>
+        <li><strong data-count="320">0</strong><span>students</span></li>
+        <li><strong data-count="18">0</strong><span>teachers</span></li>
+      </ul>
+    </div>
+
+    <div class="hero__instrument reveal">
+      <div class="halo" aria-hidden="true">
+        <svg><use href="#rosette"/></svg>
+      </div>
+      <!-- Playable dombyra: strings are live elements -->
+      <svg class="play-dombyra" id="playDombyra" viewBox="-100 0 400 800" role="img" aria-label="Interactive dombyra. Tap or swipe across the strings to play.">
+        <g transform="rotate(14 100 400)">
+          <use href="#dombyra" x="0" y="0" width="200" height="800"/>
+          <!-- live strings drawn over the static ones -->
+          <g class="live-strings" id="liveStrings" fill="none" stroke="#fff6df" stroke-width="1.8" stroke-linecap="round">
+            <path data-string="0" d="M95.5 80Q95.5 390 95.5 704"/>
+            <path data-string="1" d="M104.5 80Q104.5 390 104.5 704"/>
+          </g>
+        </g>
+      </svg>
+      <p class="hint"><span class="hint__dot"></span>Swipe across the strings — or tap a fret — to play</p>
+    </div>
+  </div>
+  <div class="band band--bottom" aria-hidden="true"></div>
+</section>
+
+<!-- ============ About ============ -->
+<section class="section about" id="about">
+  <div class="container about__grid">
+    <div class="about__art reveal" aria-hidden="true">
+      <div class="frame">
+        <svg class="frame__corner tl"><use href="#corner"/></svg>
+        <svg class="frame__corner tr"><use href="#corner"/></svg>
+        <svg class="frame__corner bl"><use href="#corner"/></svg>
+        <svg class="frame__corner br"><use href="#corner"/></svg>
+        <svg class="about__dombyra" viewBox="0 0 200 800"><use href="#dombyra"/></svg>
+        <svg class="about__dombyra about__dombyra--2" viewBox="0 0 200 800"><use href="#dombyra"/></svg>
+      </div>
+    </div>
+    <div class="about__copy reveal">
+      <p class="eyebrow eyebrow--dark">About the academy</p>
+      <h2>A small school with a <em>long memory</em></h2>
+      <p><strong>Perne</strong> (перне) is the Kazakh word for the frets tied along the neck of a dombyra. We chose it because that is how we teach: one small step at a time, each one in tune.</p>
+      <p>Our students learn the küis of Kurmangazy and Dina Nurpeisova alongside modern repertoire, in groups small enough that every teacher knows every student by name.</p>
+      <ul class="values">
+        <li><svg aria-hidden="true"><use href="#qm"/></svg><div><h3>Heritage first</h3><p>Traditional küi, terme and folk song are at the core of every program.</p></div></li>
+        <li><svg aria-hidden="true"><use href="#qm"/></svg><div><h3>Small groups</h3><p>Never more than six students per group lesson.</p></div></li>
+        <li><svg aria-hidden="true"><use href="#qm"/></svg><div><h3>On stage, often</h3><p>Every student performs at least twice a year.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span></span><svg><use href="#rosette"/></svg><span></span></div>
+
+<!-- ============ Programs ============ -->
+<section class="section programs" id="programs">
+  <div class="container">
+    <header class="section__head reveal">
+      <p class="eyebrow eyebrow--dark">Programs</p>
+      <h2>Find your <em>instrument</em></h2>
+      <div class="tabs" role="tablist" aria-label="Filter programs by age">
+        <button class="tab is-active" role="tab" aria-selected="true" data-filter="all">All</button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="kids">Children 6–12</button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="teens">Teens 13–17</button>
+        <button class="tab" role="tab" aria-selected="false" data-filter="adults">Adults</button>
+      </div>
+    </header>
+
+    <div class="cards" id="programCards">
+      <article class="card" data-age="kids teens adults" tabindex="0">
+        <div class="card__inner">
+          <div class="card__face card__front">
+            <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
+            <svg class="card__icon" viewBox="0 0 200 800" aria-hidden="true"><use href="#dombyra"/></svg>
+            <h3>Dombyra</h3>
+            <p>The heart of Kazakh music. From first strums to full küis.</p>
+            <span class="card__flip">Tap for details ↻</span>
+          </div>
+          <div class="card__face card__back">
+            <h3>Dombyra</h3>
+            <ul>
+              <li><b>Ages</b> 6+</li>
+              <li><b>Format</b> group or 1-to-1</li>
+              <li><b>Lessons</b> 2 × 45 min / week</li>
+              <li><b>From</b> 18 000 ₸ / month</li>
+            </ul>
+            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Dombyra">Choose</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-age="teens adults" tabindex="0">
+        <div class="card__inner">
+          <div class="card__face card__front">
+            <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
+            <svg class="card__icon card__icon--qm" viewBox="0 0 100 100" aria-hidden="true"><use href="#qm"/></svg>
+            <h3>Kobyz</h3>
+            <p>The ancient bowed voice of the steppe, taught by a master of the instrument.</p>
+            <span class="card__flip">Tap for details ↻</span>
+          </div>
+          <div class="card__face card__back">
+            <h3>Kobyz</h3>
+            <ul>
+              <li><b>Ages</b> 12+</li>
+              <li><b>Format</b> 1-to-1</li>
+              <li><b>Lessons</b> 2 × 45 min / week</li>
+              <li><b>From</b> 24 000 ₸ / month</li>
+            </ul>
+            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Kobyz">Choose</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-age="kids teens adults" tabindex="0">
+        <div class="card__inner">
+          <div class="card__face card__front">
+            <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
+            <svg class="card__icon card__icon--qm" viewBox="0 0 200 200" aria-hidden="true"><use href="#rosette"/></svg>
+            <h3>Folk singing</h3>
+            <p>Terme, zhyr and lyrical songs — breath, diction and stage presence.</p>
+            <span class="card__flip">Tap for details ↻</span>
+          </div>
+          <div class="card__face card__back">
+            <h3>Folk singing</h3>
+            <ul>
+              <li><b>Ages</b> 7+</li>
+              <li><b>Format</b> group or 1-to-1</li>
+              <li><b>Lessons</b> 2 × 45 min / week</li>
+              <li><b>From</b> 16 000 ₸ / month</li>
+            </ul>
+            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Folk singing">Choose</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-age="kids teens adults" tabindex="0">
+        <div class="card__inner">
+          <div class="card__face card__front">
+            <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
+            <svg class="card__icon card__icon--keys" viewBox="0 0 120 80" aria-hidden="true">
+              <rect x="2" y="2" width="116" height="76" rx="6" fill="none" stroke="currentColor" stroke-width="3"/>
+              <path d="M18 2V78M34 2V78M50 2V78M66 2V78M82 2V78M98 2V78" stroke="currentColor" stroke-width="2"/>
+              <path d="M13 2H23V46H13ZM29 2H39V46H29ZM61 2H71V46H61ZM77 2H87V46H77ZM93 2H103V46H93Z" fill="currentColor"/>
+            </svg>
+            <h3>Piano</h3>
+            <p>Classical foundation with Kazakh composers in the repertoire.</p>
+            <span class="card__flip">Tap for details ↻</span>
+          </div>
+          <div class="card__face card__back">
+            <h3>Piano</h3>
+            <ul>
+              <li><b>Ages</b> 6+</li>
+              <li><b>Format</b> 1-to-1</li>
+              <li><b>Lessons</b> 2 × 45 min / week</li>
+              <li><b>From</b> 22 000 ₸ / month</li>
+            </ul>
+            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Piano">Choose</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-age="kids teens" tabindex="0">
+        <div class="card__inner">
+          <div class="card__face card__front">
+            <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
+            <svg class="card__icon card__icon--qm" viewBox="0 0 100 100" aria-hidden="true">
+              <path d="M10 30H90M10 45H90M10 60H90M10 75H90" stroke="currentColor" stroke-width="2"/>
+              <ellipse cx="34" cy="68" rx="9" ry="7" fill="currentColor" transform="rotate(-20 34 68)"/>
+              <ellipse cx="66" cy="53" rx="9" ry="7" fill="currentColor" transform="rotate(-20 66 53)"/>
+              <path d="M42 66V22L74 14V51" fill="none" stroke="currentColor" stroke-width="4"/>
+            </svg>
+            <h3>Solfeggio &amp; theory</h3>
+            <p>Reading, ear training and rhythm — playful for kids, rigorous for exams.</p>
+            <span class="card__flip">Tap for details ↻</span>
+          </div>
+          <div class="card__face card__back">
+            <h3>Solfeggio &amp; theory</h3>
+            <ul>
+              <li><b>Ages</b> 6–17</li>
+              <li><b>Format</b> group</li>
+              <li><b>Lessons</b> 1 × 45 min / week</li>
+              <li><b>From</b> 9 000 ₸ / month</li>
+            </ul>
+            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Solfeggio & theory">Choose</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-age="adults" tabindex="0">
+        <div class="card__inner">
+          <div class="card__face card__front">
+            <svg class="card__corner" aria-hidden="true"><use href="#corner"/></svg>
+            <svg class="card__icon" viewBox="0 0 200 800" aria-hidden="true"><use href="#dombyra"/></svg>
+            <h3>Dombyra for grown-ups</h3>
+            <p>Evening classes for complete beginners. Instrument provided.</p>
+            <span class="card__flip">Tap for details ↻</span>
+          </div>
+          <div class="card__face card__back">
+            <h3>Dombyra for grown-ups</h3>
+            <ul>
+              <li><b>Ages</b> 18+</li>
+              <li><b>Format</b> group, evenings</li>
+              <li><b>Lessons</b> 1 × 90 min / week</li>
+              <li><b>From</b> 15 000 ₸ / month</li>
+            </ul>
+            <a class="btn btn--gold btn--sm" href="#enroll" data-program="Dombyra for adults">Choose</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Teachers (swipe carousel) ============ -->
+<section class="section teachers" id="teachers">
+  <div class="band band--top" aria-hidden="true"></div>
+  <div class="container">
+    <header class="section__head section__head--split reveal">
+      <div>
+        <p class="eyebrow">Teachers</p>
+        <h2>Musicians who <em>love to teach</em></h2>
+      </div>
+      <div class="carousel__ctrls">
+        <button class="round-btn" data-dir="-1" aria-label="Previous teacher">←</button>
+        <button class="round-btn" data-dir="1" aria-label="Next teacher">→</button>
+      </div>
+    </header>
+
+    <div class="carousel" id="teacherCarousel" aria-roledescription="carousel">
+      <div class="carousel__track">
+        <article class="teacher">
+          <div class="teacher__avatar"><svg aria-hidden="true"><use href="#rosette"/></svg><span>АН</span></div>
+          <h3>Aigerim Nurlanqyzy</h3>
+          <p class="teacher__role">Dombyra · Head of school</p>
+          <p>Laureate of the Republican küi competition. Teaches the Western (Batys) tökpe style.</p>
+        </article>
+        <article class="teacher">
+          <div class="teacher__avatar"><svg aria-hidden="true"><use href="#rosette"/></svg><span>ЕС</span></div>
+          <h3>Yerlan Sadyqov</h3>
+          <p class="teacher__role">Kobyz</p>
+          <p>Twenty years with the kobyz, from conservatory to folk orchestra.</p>
+        </article>
+        <article class="teacher">
+          <div class="teacher__avatar"><svg aria-hidden="true"><use href="#rosette"/></svg><span>ДА</span></div>
+          <h3>Dana Amanova</h3>
+          <p class="teacher__role">Folk singing</p>
+          <p>Specialises in terme and children's voice — patient, warm and exacting.</p>
+        </article>
+        <article class="teacher">
+          <div class="teacher__avatar"><svg aria-hidden="true"><use href="#rosette"/></svg><span>ТБ</span></div>
+          <h3>Timur Bekov</h3>
+          <p class="teacher__role">Piano · Theory</p>
+          <p>Prepares students for music college entrance exams.</p>
+        </article>
+        <article class="teacher">
+          <div class="teacher__avatar"><svg aria-hidden="true"><use href="#rosette"/></svg><span>ЖҚ</span></div>
+          <h3>Zhanar Qasymova</h3>
+          <p class="teacher__role">Dombyra · Children</p>
+          <p>Her youngest students start with songs and games before their first küi.</p>
+        </article>
+      </div>
+    </div>
+    <div class="dots" id="teacherDots" aria-hidden="true"></div>
+  </div>
+  <div class="band band--bottom" aria-hidden="true"></div>
+</section>
+
+<!-- ============ Gallery ============ -->
+<section class="section gallery" id="gallery">
+  <div class="container">
+    <header class="section__head reveal">
+      <p class="eyebrow eyebrow--dark">Gallery</p>
+      <h2>The <em>dombyra</em>, up close</h2>
+      <p class="muted">Tap any picture to open it. Swipe to browse.</p>
+    </header>
+
+    <div class="masonry" id="gallery-grid">
+      <button class="tile tile--tall tile--night" data-caption="A two-stringed dombyra, tuned D–G">
+        <svg viewBox="0 0 300 520" aria-hidden="true">
+          <use href="#rosette" x="30" y="140" width="240" height="240" class="tile__rosette"/>
+          <use href="#dombyra" x="70" y="20" width="160" height="480" transform="rotate(-8 150 260)"/>
+        </svg>
+        <span class="tile__cap">Tuned D–G</span>
+      </button>
+      <button class="tile tile--sand" data-caption="Crossed dombyras — the duet">
+        <svg viewBox="0 0 300 300" aria-hidden="true">
+          <use href="#dombyra" x="85" y="10" width="95" height="280" transform="rotate(-28 150 150)"/>
+          <use href="#dombyra" x="120" y="10" width="95" height="280" transform="rotate(28 150 150)"/>
+        </svg>
+        <span class="tile__cap">The duet</span>
+      </button>
+      <button class="tile tile--red" data-caption="Qoshqar müiz — the ram-horn ornament carved into the body">
+        <svg viewBox="0 0 300 300" aria-hidden="true">
+          <use href="#qm" x="50" y="40" width="200" height="200" class="tile__orn"/>
+          <use href="#qm" x="10" y="220" width="70" height="70" class="tile__orn"/>
+          <use href="#qm" x="220" y="220" width="70" height="70" class="tile__orn"/>
+        </svg>
+        <span class="tile__cap">Qoshqar müiz</span>
+      </button>
+      <button class="tile tile--wide tile--night" data-caption="Perne — the tied frets that gave our academy its name">
+        <svg viewBox="0 0 600 300" aria-hidden="true">
+          <use href="#dombyra" x="150" y="-450" width="300" height="1200" transform="rotate(90 300 150)"/>
+        </svg>
+        <span class="tile__cap">Perne — the frets</span>
+      </button>
+      <button class="tile tile--sand tile--wide-sm" data-caption="The head and its two tuning pegs (qulaq)">
+        <svg viewBox="0 0 300 300" aria-hidden="true">
+          <use href="#dombyra" x="40" y="10" width="220" height="880"/>
+        </svg>
+        <span class="tile__cap">Qulaq — the pegs</span>
+      </button>
+      <button class="tile tile--wide tile--red" data-caption="Three generations, one instrument">
+        <svg viewBox="0 0 600 300" aria-hidden="true">
+          <use href="#dombyra" x="235" y="-180" width="130" height="520" transform="rotate(-84 300 80)"/>
+          <use href="#dombyra" x="241.25" y="-75" width="117.5" height="470" transform="rotate(-90 300 160)"/>
+          <use href="#dombyra" x="260" y="36" width="100" height="400" transform="rotate(-95 310 236)"/>
+        </svg>
+        <span class="tile__cap">Three generations</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery viewer" hidden>
+  <button class="lightbox__close" aria-label="Close">×</button>
+  <button class="lightbox__nav lightbox__nav--prev" aria-label="Previous">‹</button>
+  <figure class="lightbox__figure">
+    <div class="lightbox__stage" id="lightboxStage"></div>
+    <figcaption id="lightboxCaption"></figcaption>
+  </figure>
+  <button class="lightbox__nav lightbox__nav--next" aria-label="Next">›</button>
+</div>
+
+<!-- ============ Testimonials ============ -->
+<section class="section quotes">
+  <div class="container">
+    <div class="quote-swiper reveal" id="quotes">
+      <svg class="quotes__mark" aria-hidden="true"><use href="#rosette"/></svg>
+      <div class="quote-swiper__track">
+        <blockquote class="quote">
+          <p>“My daughter played “Adai” at the spring concert after one year. I cried the whole way through.”</p>
+          <cite>— Saule, mother of Ayaru (9)</cite>
+        </blockquote>
+        <blockquote class="quote">
+          <p>“I started dombyra at 41. The evening group is the best two hours of my week.”</p>
+          <cite>— Nurlan, adult student</cite>
+        </blockquote>
+        <blockquote class="quote">
+          <p>“Strict where it matters, kind everywhere else. Our son got into music college.”</p>
+          <cite>— the Ospanov family</cite>
+        </blockquote>
+      </div>
+      <div class="dots dots--light" id="quoteDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Events ============ -->
+<section class="section events" id="events">
+  <div class="container">
+    <header class="section__head reveal">
+      <p class="eyebrow eyebrow--dark">Concerts &amp; events</p>
+      <h2>Come and <em>listen</em></h2>
+    </header>
+    <ol class="event-list">
+      <li class="event reveal">
+        <time datetime="2026-11-08"><b>08</b>Nov</time>
+        <div><h3>Autumn küi evening</h3><p>Senior students perform Kurmangazy and Tattimbet · Free entry</p></div>
+        <span class="tag">Concert</span>
+      </li>
+      <li class="event reveal">
+        <time datetime="2026-11-22"><b>22</b>Nov</time>
+        <div><h3>Open day &amp; trial lessons</h3><p>Try every instrument, meet the teachers · Ages 6+</p></div>
+        <span class="tag tag--gold">Open day</span>
+      </li>
+      <li class="event reveal">
+        <time datetime="2026-12-16"><b>16</b>Dec</time>
+        <div><h3>Independence Day concert</h3><p>Ensemble, choir and soloists on the main stage</p></div>
+        <span class="tag">Concert</span>
+      </li>
+      <li class="event reveal">
+        <time datetime="2027-03-21"><b>21</b>Mar</time>
+        <div><h3>Nauryz celebration</h3><p>Folk songs, aitys demonstration and baursaks for everyone</p></div>
+        <span class="tag tag--red">Festival</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section faq">
+  <div class="container container--narrow">
+    <header class="section__head reveal">
+      <p class="eyebrow eyebrow--dark">Questions</p>
+      <h2>Before you <em>enroll</em></h2>
+    </header>
+    <div class="accordion">
+      <details class="acc reveal">
+        <summary>Do I need my own dombyra?</summary>
+        <p>No. For the first three months we lend every student an instrument. After that our teachers help you choose one that fits your hand and budget.</p>
+      </details>
+      <details class="acc reveal">
+        <summary>What is the youngest age you accept?</summary>
+        <p>Six years for instruments and singing. Children of five can join the “Little musicians” rhythm-and-song group.</p>
+      </details>
+      <details class="acc reveal">
+        <summary>Is it too late to start as an adult?</summary>
+        <p>Never. Our evening group has students from 19 to 67. Most play their first full küi within a year.</p>
+      </details>
+      <details class="acc reveal">
+        <summary>Is the trial lesson really free?</summary>
+        <p>Yes — 30 minutes with a teacher, no obligation. Book it with the form below.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Enroll / Contact ============ -->
+<section class="section enroll" id="enroll">
+  <div class="hero__pattern" aria-hidden="true"></div>
+  <div class="container enroll__grid" id="contact">
+    <div class="enroll__info reveal">
+      <p class="eyebrow">Enroll</p>
+      <h2>Book a <em>free</em> trial lesson</h2>
+      <p class="lead">Leave your details and we will call you back within one working day.</p>
+      <ul class="contact-list">
+        <li><span>Address</span>12 Abai Avenue, 2nd floor</li>
+        <li><span>Phone</span><a href="tel:+77000000000">+7 700 000 00 00</a></li>
+        <li><span>Hours</span>Mon–Sat · 10:00–20:00</li>
+        <li><span>Email</span><a href="mailto:hello@perne.academy">hello@perne.academy</a></li>
+      </ul>
+    </div>
+    <form class="form reveal" id="enrollForm" novalidate>
+      <svg class="form__corner" aria-hidden="true"><use href="#corner"/></svg>
+      <label>Your name
+        <input name="name" required autocomplete="name" placeholder="Aruzhan">
+      </label>
+      <label>Phone
+        <input name="phone" type="tel" required autocomplete="tel" placeholder="+7 7__ ___ __ __">
+      </label>
+      <label>Program
+        <select name="program" id="programSelect">
+          <option>Dombyra</option>
+          <option>Dombyra for adults</option>
+          <option>Kobyz</option>
+          <option>Folk singing</option>
+          <option>Piano</option>
+          <option>Solfeggio &amp; theory</option>
+          <option>Not sure yet</option>
+        </select>
+      </label>
+      <fieldset class="chips">
+        <legend>Student age</legend>
+        <label><input type="radio" name="age" value="6–12" checked><span>6–12</span></label>
+        <label><input type="radio" name="age" value="13–17"><span>13–17</span></label>
+        <label><input type="radio" name="age" value="18+"><span>18+</span></label>
+      </fieldset>
+      <button class="btn btn--gold btn--block" type="submit">Request a call back</button>
+      <p class="form__note">We never share your number.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="band band--top" aria-hidden="true"></div>
+  <div class="container footer__inner">
+    <a class="logo" href="#top">
+      <svg class="logo__mark" aria-hidden="true"><use href="#rosette"/></svg>
+      <span class="logo__text">Perne<small>Music Academy</small></span>
+    </a>
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="#programs">Programs</a>
+      <a href="#teachers">Teachers</a>
+      <a href="#events">Concerts</a>
+      <a href="#enroll">Enroll</a>
+    </nav>
+    <p class="footer__copy">© <span id="year">2026</span> Perne Music Academy</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

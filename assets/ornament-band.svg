@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="32" viewBox="0 0 64 32">
+  <g fill="none" stroke="#d6a744" stroke-width="2.2" stroke-linecap="round">
+    <path d="M0 2.5H64M0 29.5H64" stroke-width="1.4"/>
+    <!-- running ram-horn scroll -->
+    <path d="M32 26V18C32 11 37 7 42 7C47 7 50 11 49 15C48 19 43 20 41 17C39.5 14.5 41.5 12.5 43.5 13.5"/>
+    <path d="M32 18C32 11 27 7 22 7C17 7 14 11 15 15C16 19 21 20 23 17C24.5 14.5 22.5 12.5 20.5 13.5"/>
+  </g>
+  <g fill="#d6a744">
+    <path d="M0 11L4 16L0 21L-4 16Z M64 11L68 16L64 21L60 16Z"/>
+    <circle cx="32" cy="26.5" r="1.8"/>
+  </g>
+</svg>
