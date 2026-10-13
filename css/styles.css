@@ -112,8 +112,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .header__inner .logo { margin-right: auto; }
 
 .logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
-.logo__mark { width: 42px; height: 42px; color: var(--gold); transition: transform .8s var(--ease); }
-.logo:hover .logo__mark { transform: rotate(90deg); }
+.logo__mark { width: 48px; height: 48px; border-radius: 50%; box-shadow: 0 0 0 2px rgba(214, 167, 68, .55); transition: transform .5s var(--ease), box-shadow .3s; }
+.logo:hover .logo__mark { transform: scale(1.06) rotate(-4deg); box-shadow: 0 0 0 2px var(--gold); }
+.footer .logo__mark { width: 72px; height: 72px; }
 .logo__text { font: 700 1.6rem/1 var(--serif); letter-spacing: .02em; }
 .logo__text small { display: block; font: 600 .62rem/1.4 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--gold-2); }
 
@@ -506,7 +507,8 @@ body.menu-open .wa-float, body.menu-open .to-top { opacity: 0; pointer-events: n
 @media (max-width: 640px) {
   :root { --header-h: 62px; }
   body { font-size: .97rem; }
-  .logo__mark { width: 36px; height: 36px; }
+  .logo__mark { width: 42px; height: 42px; }
+  .footer .logo__mark { width: 64px; height: 64px; }
   .logo__text { font-size: 1.4rem; }
 
   .hero { padding-top: calc(var(--header-h) + 24px); padding-bottom: 70px; min-height: auto; }
